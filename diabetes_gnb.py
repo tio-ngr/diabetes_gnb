@@ -1,5 +1,6 @@
 import pickle
 import streamlit as st
+import time
 import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
@@ -74,9 +75,26 @@ if st.sidebar.button('Predict'):
     # Make prediction
     prediction = model_nb.predict(user_input_scaled)
 
+    bar = st.progress(0)
+    status_text = st.empty()
+
+    for i in range(1, 101):
+      status_text.text(f"{i}% complete")
+      bar.progress(i)
+      time.sleep(0.01)
+      if i == 100:
+        time.sleep(1)
+        status_text.empty()
+        bar.empty()
+    
     # Display prediction
-    st.write('**Prediction Result:**')
-    if prediction[0] == 0:
-        st.write('No Diabetes')
+    
+    if prediction == 0:
+      result = ":green[**Tidak Diabetes**]"
     else:
-        st.write('Diabetes')
+      result = ":red[**Diabetes**]"
+
+    st.write("")
+    st.write("")
+    st.write('**Prediction Result:**')
+    st.subheader(result)
