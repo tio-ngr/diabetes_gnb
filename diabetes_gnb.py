@@ -54,7 +54,14 @@ status_merokok = st.sidebar.selectbox('Smoking History', ['never', 'No Info', 'c
 jenis_kelamin = 0 if jenis_kelamin == 'Female' else 1
 hipertensi = 1 if hipertensi == 'ever' else 0
 penyakit_jantung = 1 if penyakit_jantung == 'ever' else 0
-status_merokok = df['smoking_history'].map({'never': 0, 'No Info': 1, 'current': 2, 'former': 3, 'ever': 4, 'not current': 5})[status_merokok]
+# status_merokok = df['smoking_history'].map({'never': 0, 'No Info': 1, 'current': 2, 'former': 3, 'ever': 4, 'not current': 5})[status_merokok]
+
+# # Standardize the user input
+# user_input = np.array([[jenis_kelamin, umur, hipertensi, penyakit_jantung, bmi, darah, gula_darah, status_merokok]])
+# user_input_scaled = scaler.transform(user_input)
+
+status_merokok_mapping = {'never': 0, 'No Info': 1, 'current': 2, 'former': 3, 'ever': 4, 'not current': 5}
+status_merokok = status_merokok_mapping[status_merokok]
 
 # Standardize the user input
 user_input = np.array([[jenis_kelamin, umur, hipertensi, penyakit_jantung, bmi, darah, gula_darah, status_merokok]])
