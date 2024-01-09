@@ -67,12 +67,16 @@ status_merokok = status_merokok_mapping[status_merokok]
 user_input = np.array([[jenis_kelamin, umur, hipertensi, penyakit_jantung, bmi, darah, gula_darah, status_merokok]])
 user_input_scaled = scaler.transform(user_input)
 
-# Make prediction
-prediction = model_nb.predict(user_input_scaled)
+# # Make prediction
+# prediction = model_nb.predict(user_input_scaled)
+# Make prediction when user input changes
+if st.sidebar.button('Predict'):
+    # Make prediction
+    prediction = model_nb.predict(user_input_scaled)
 
-# Display prediction
-st.write('**Prediction Result:**')
-if prediction[0] == 0:
-    st.write('No Diabetes')
-else:
-    st.write('Diabetes')
+    # Display prediction
+    st.write('**Prediction Result:**')
+    if prediction[0] == 0:
+        st.write('No Diabetes')
+    else:
+        st.write('Diabetes')
