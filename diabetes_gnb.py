@@ -44,22 +44,17 @@ st.sidebar.title('User Input')
 
 # Collect user input
 jenis_kelamin = st.sidebar.selectbox('Gender', ['Female', 'Male'])
-umur = st.sidebar.slider('Age', min_value=1, max_value=100, value=25)
+umur = st.sidebar.number_input('Age', min_value=1, max_value=100, value=25)
 hipertensi = st.sidebar.radio('Hypertension', ['never', 'ever'], index=1)
 penyakit_jantung = st.sidebar.radio('Heart Disease', ['never', 'ever'], index=0)
 bmi = st.sidebar.slider('BMI', min_value=1.0, max_value=50.0, value=25.0)
-darah = st.sidebar.slider('Cholesterol', min_value=1.0, max_value=500.0, value=200.0)
-gula_darah = st.sidebar.slider('Blood Sugar Level', min_value=50, max_value=300, value=140)
-status_merokok = st.sidebar.selectbox('Smoking History', ['never', 'No Info', 'current', 'former', 'ever', 'not current'], index=2)
+darah = st.sidebar.number_input('Cholesterol', min_value=1.0, max_value=500.0, value=200.0)
+gula_darah = st.sidebar.number_input('Blood Sugar Level', min_value=50, max_value=300, value=70)
+status_merokok = st.sidebar.selectbox('Smoking History', ['never', 'No Info', 'current', 'former', 'ever', 'not current'], index=0)
 
 jenis_kelamin = 0 if jenis_kelamin == 'Female' else 1
 hipertensi = 1 if hipertensi == 'ever' else 0
 penyakit_jantung = 1 if penyakit_jantung == 'ever' else 0
-# status_merokok = df['smoking_history'].map({'never': 0, 'No Info': 1, 'current': 2, 'former': 3, 'ever': 4, 'not current': 5})[status_merokok]
-
-# # Standardize the user input
-# user_input = np.array([[jenis_kelamin, umur, hipertensi, penyakit_jantung, bmi, darah, gula_darah, status_merokok]])
-# user_input_scaled = scaler.transform(user_input)
 
 status_merokok_mapping = {'never': 0, 'No Info': 1, 'current': 2, 'former': 3, 'ever': 4, 'not current': 5}
 status_merokok = status_merokok_mapping[status_merokok]
